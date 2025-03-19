@@ -4,7 +4,7 @@ const QuestSchema = new mongoose.Schema(
   {
     id: { type: String, unique: true, required: true },
     name: { type: String, required: true },
-    completedDays: { type: Map, of: Boolean, default: {} },
+    completedDays: { type: Map, of: Number, default: {} },
   },
   { timestamps: true }
 );
