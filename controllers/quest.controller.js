@@ -8,9 +8,11 @@ const newQuest = async (req, res) => {
       return res.status(400).json({ message: "name not found" });
     }
 
-    await Quest.create({ name, completedDays });
+    const customId = Date.now().toString();
 
-    res.status(200).json({ message: "created a quest" });
+    const newQuest = await Quest.create({ id: customId, name, completedDays });
+
+    res.status(200).json({ message: "created a quest", quest });
   } catch (error) {
     res.status(400).json({
       message: "error creating a quest",
