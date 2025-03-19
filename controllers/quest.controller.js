@@ -68,4 +68,37 @@ const deleteQuest = async (req, res) => {
   }
 };
 
-export { newQuest, getAllQuests, deleteQuest };
+const updateQuest = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const { name, completedDays } = req.body;
+    if (!id) {
+      return res.status(400).json({ message: "quest id is required" });
+    }
+
+    const quest = await Quest.findById(id);
+
+    if (!quest) {
+      return res.status(404).json({ message: "quest not found" });
+    }
+
+    if (name) quest.name = name;
+    if (completedDays) quest.completedDays = completedDays;
+
+    const updatedQuest = await quest.save();
+
+    res.status(200).json({
+      success: true,
+      updatedQuest,
+      message: "quest updated successfullu",
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "quest was not updated",
+    });
+  }
+};
+
+export { newQuest, getAllQuests, deleteQuest, updateQuest };
