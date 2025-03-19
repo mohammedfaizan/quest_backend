@@ -97,6 +97,7 @@ const updateQuest = async (req, res) => {
     res.status(400).json({
       success: false,
       message: "quest was not updated",
+      error: error.message,
     });
   }
 };
