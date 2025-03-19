@@ -14,8 +14,10 @@ const newQuest = async (req, res) => {
 
     res.status(200).json({ message: "created a quest", quest });
   } catch (error) {
+    console.error("Error creating quest:", error);
     res.status(400).json({
       message: "error creating a quest",
+      error: error.message,
     });
   }
 };
