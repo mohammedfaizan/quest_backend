@@ -12,7 +12,7 @@ const newQuest = async (req, res) => {
 
     const newQuest = await Quest.create({ id: customId, name, completedDays });
 
-    res.status(200).json({ message: "created a quest", quest });
+    res.status(200).json({ message: "created a quest", newQuest });
   } catch (error) {
     console.error("Error creating quest:", error);
     res.status(400).json({
